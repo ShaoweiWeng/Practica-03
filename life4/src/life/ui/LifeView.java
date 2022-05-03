@@ -48,17 +48,23 @@ public class LifeView implements DrawListener {
           canvas.setPenColor(Draw.WHITE);
           canvas.square(xc, yc, half);
         }
-        if(red < 255){
-        red++;
+        if(green < 255){
+        green++;
         }
-        else if (red == 255 && blue < 255){
+        else if (green == 255 && blue < 255){
           blue++;
         }
-        else if(red == 255 && blue == 255 && green < 255){
-          green++;
+        else if(green == 255 && blue == 255 && red < 255){
+          red++;
         }
-        else if (red == 255 && blue == 255 && green == 255){
+        else if (green == 255 && blue == 255 && green == 255 && red > 0){
           red--;
+        }
+        else if (red == 1 && blue == 255 && green == 255 && blue > 0){
+          blue--;
+        }
+        else if (red == 1 && blue == 1 && green == 255 && green > 0){
+          green--;
         }
       }
     }
