@@ -34,16 +34,31 @@ public class LifeView implements DrawListener {
     // half size of a cell in the canvas
     double half = 512.0 / size / 2.0 / 512.0;
 
+    int red = 0;
+    int blue = 0;
+    int green = 0;
     canvas.clear(Draw.BLACK);
     for (int x = 0; x < size; x++) {
       for (int y = 0; y < size; y++) {
         double xc = (x + 1.0) / size;
         double yc = (y + 1.0) / size;
         if (g.live(x, y)) {
-          canvas.setPenColor(Draw.RED);
+          canvas.setPenColor(red,green,blue);
           canvas.filledSquare(xc, yc, half);
           canvas.setPenColor(Draw.WHITE);
           canvas.square(xc, yc, half);
+        }
+        if(red < 255){
+        red++;
+        }
+        else if (red == 255 && blue < 255){
+          blue++;
+        }
+        else if(red == 255 && blue == 255 && green < 255){
+          green++;
+        }
+        else if (red == 255 && blue == 255 && green == 255){
+          red--;
         }
       }
     }
