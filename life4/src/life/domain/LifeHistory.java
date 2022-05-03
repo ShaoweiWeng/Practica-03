@@ -22,7 +22,7 @@ public class LifeHistory {
    * generación actual (current).
    */
   public LifeHistory(Gen gen) {
-    // TODO: implementar el constructor
+    current = gen;
   }
 
   /**
@@ -30,29 +30,41 @@ public class LifeHistory {
    * será la actual manteniendo la historia anterior.
    */
   public void evolve() {
-    // TODO: implementar el modificador
+    LifeHistory aux = prev;
+    prev = new LifeHistory(current);
+    prev.prev = aux;
+    current = current.next();
   }
 
   /**
-   * "Involuciona" eliminando la generación actial (current) y
+   * "Involuciona" eliminando la generación actual (current) y
    * recuperando la anterior.
    */
   public void undo() {
-    // TODO: implementar el modificador
+    if (prev != null){
+      current = prev.current;
+      prev = prev.prev;
+    }
   }
 
   /**
    * Devuelve la generación más nueva de la historia (la actual).
    */
   public Gen current() {
-    // TODO: implementar el observador
+    return current;
   }
 
   /**
    * Devuelve el número de generaciones en la historia.
    */
   public int generations() {
-    // TODO: implementar el observador
+    int contador = 1;
+    LifeHistory aux = prev;
+    while(aux != null){
+      contador++;
+      aux = aux.prev;
+    }
+    return contador;
   }
 
   /**
@@ -60,6 +72,10 @@ public class LifeHistory {
    * igual a la actual).
    */
   public boolean endOfGame() {
-    // TODO: implementar el observador
+    boolean end = false;
+    if(prev != null && current.equals(prev.current)){
+      end = true;
+    }
+    return end;
   }
 }

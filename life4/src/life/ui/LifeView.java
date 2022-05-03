@@ -34,20 +34,20 @@ public class LifeView implements DrawListener {
     // half size of a cell in the canvas
     double half = 512.0 / size / 2.0 / 512.0;
 
-    canvas.clear();
+    canvas.clear(Draw.BLACK);
     for (int x = 0; x < size; x++) {
       for (int y = 0; y < size; y++) {
         double xc = (x + 1.0) / size;
         double yc = (y + 1.0) / size;
         if (g.live(x, y)) {
-          canvas.setPenColor(Draw.BLACK);
+          canvas.setPenColor(Draw.RED);
           canvas.filledSquare(xc, yc, half);
           canvas.setPenColor(Draw.WHITE);
           canvas.square(xc, yc, half);
         }
       }
     }
-    canvas.setPenColor(Draw.BLACK);
+    canvas.setPenColor(Draw.WHITE);
     String helpText;
     if (showPaused) {
       helpText = "(s) Paso a paso, (r) Continuar, (u) Atrás, (q) Salir";
@@ -58,7 +58,7 @@ public class LifeView implements DrawListener {
     canvas.text(0.5,0.1, helpText);
     canvas.textRight(0.9,0.9, "Generation: " + lifeHistory.generations());
     if (lifeHistory.endOfGame()) {
-      canvas.setPenColor(Draw.RED);
+      canvas.setPenColor(Draw.GREEN);
       canvas.textRight(0.9,0.8, "End of game");
     }
     canvas.show();

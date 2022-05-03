@@ -32,7 +32,7 @@ public class Life {
                   stdin.nextLine();
                   int x = stdin.nextInt();
                   int y = stdin.nextInt();
-                  nuevo.celdas[x][y] = true;
+                  nuevo.set(x, y, true);
               }
           }
           stdin.close();
